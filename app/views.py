@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import ObjectDoesNotExist
+from app.views_registration import clean_phone_number
 
 
 def index(request):
@@ -13,19 +14,19 @@ def index(request):
 def html(request, filename):
     context = {"filename": filename,
                "collapse": ""}
-    if request.user.is_anonymous and filename != "login":
+    if request.user.is_anonymous and filename not in ["login", "register"]:
         return redirect("/login.html")
+    if not request.user.is_anonymous:
+        context["last_name"] = request.user.last_name
+        context["first_name"] = request.user.first_name
     if filename == "logout":
         logout(request)
         return redirect("/")
     if filename == "login" and request.method == "POST":
-        username = request.POST.get("username")
+        username = clean_phone_number(request.POST.get("phone", ""))
         password = request.POST.get("password")
         try:
-            if "@" in username:
-                user = User.objects.get(email=username)
-            else:
-                user = User.objects.get(username=username)
+            user = User.objects.get(username=username)
             user = authenticate(request, username=user.username, password=password)
             if user is not None:
                 login(request, user)

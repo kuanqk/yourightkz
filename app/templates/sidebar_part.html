@@ -27,6 +27,8 @@
                 Interface
             </div>
 
+            {% if user.is_superuser %}
+
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if collapse == "components" %}active{% endif %}">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
@@ -105,6 +107,8 @@
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tables</span></a>
             </li>
+
+            {% endif %}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
