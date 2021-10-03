@@ -19,10 +19,12 @@ from bootstrap import settings
 from django.conf.urls.static import static
 from app import views
 import app.views_registration as view_registration
+import app.views_subscriptions as view_subscriptions
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("register.html", view_registration.register),
+    path("subscriptions.html", view_subscriptions.index),
     path("<filename>.html", views.html),
     path("", views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
