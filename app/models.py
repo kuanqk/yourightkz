@@ -11,6 +11,8 @@ class Subscription(models.Model):
     license_plate = models.CharField(max_length=16, blank=False, null=False)
     json_data = models.CharField(max_length=1000, default="{}")
     iin = models.CharField(max_length=12, default="")
+    last_name = models.CharField(max_length=100, default="")
+    first_name = models.CharField(max_length=100, default="")
     active = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
     # payment_status = models.CharField(max_length=100, default="Init")
@@ -24,7 +26,7 @@ class Subscription(models.Model):
         if self.paid:
             paid = "ОПЛАЧЕНО"
 
-        return f"{self.user.last_name}, {self.iin}, {self.valid_from}, {active}, {paid}"
+        return f"{self.last_name} {self.first_name}, {self.iin}, {self.valid_from}, {active}, {paid}"
 
 
 class Incident(models.Model):
