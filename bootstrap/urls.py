@@ -21,8 +21,8 @@ from app import views
 import app.views_registration as view_registration
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('register.html', view_registration.register),
-    path('<filename>.html', views.html),
-    path('', views.index),
-    ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path("admin/", admin.site.urls),
+    path("register.html", view_registration.register),
+    path("<filename>.html", views.html),
+    path("", views.index),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

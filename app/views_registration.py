@@ -15,6 +15,7 @@ def clean_phone_number(phone):
 
     return phone
 
+
 def register(request):
     context = {"error": ""}
     print("request method", request.method)
@@ -35,7 +36,9 @@ def register(request):
         if password != repeat_password:
             return error(request, "Пароли не совпадают")
         if User.objects.filter(id=phone).exists():
-            return error(request, "Пользователь с таким номером телефона уже существует")
+            return error(
+                request, "Пользователь с таким номером телефона уже существует"
+            )
 
         user = User()
         user.username = phone

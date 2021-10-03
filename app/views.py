@@ -12,8 +12,7 @@ def index(request):
 
 
 def html(request, filename):
-    context = {"filename": filename,
-               "collapse": ""}
+    context = {"filename": filename, "collapse": ""}
     if request.user.is_anonymous and filename not in ["login", "register"]:
         return redirect("/login.html")
     if not request.user.is_anonymous:
@@ -41,7 +40,12 @@ def html(request, filename):
     print(filename, request.method)
     if filename in ["buttons", "cards"]:
         context["collapse"] = "components"
-    if filename in ["utilities-color", "utilities-border", "utilities-animation", "utilities-other"]:
+    if filename in [
+        "utilities-color",
+        "utilities-border",
+        "utilities-animation",
+        "utilities-other",
+    ]:
         context["collapse"] = "utilities"
     if filename in ["404", "blank"]:
         context["collapse"] = "pages"

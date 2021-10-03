@@ -12,6 +12,15 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            <li class="nav-item {% if filename == "subscriptions" %}active{% endif %}">
+                <a class="nav-link" href="/subscriptions.html">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Мои подписки</span></a>
+            </li>
+
+
+        {% if user.is_superuser %}
+
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {% if filename == "index" %}active{% endif %}">
                 <a class="nav-link" href="/index.html">
@@ -26,8 +35,6 @@
             <div class="sidebar-heading">
                 Interface
             </div>
-
-            {% if user.is_superuser %}
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item {% if collapse == "components" %}active{% endif %}">
@@ -108,7 +115,7 @@
                     <span>Tables</span></a>
             </li>
 
-            {% endif %}
+        {% endif %}
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
