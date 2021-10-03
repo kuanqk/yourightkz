@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% include "head_part.html" %}
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include "sidebar_part.html" %}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+            {% include "topbar_part.html" %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <h1 class="h3 mb-4 text-gray-800">Добавить подписку</h1>
+
+                            <form class="user" method="post">
+                                {% csrf_token %}
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="lastname"
+                                               name="lastname"
+                                               value="{{ subs.last_name }}"
+                                               required
+                                            placeholder="Фамилия водителя">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="firstname"
+                                               name="firstname"
+                                               value="{{ subs.first_name }}"
+                                               required
+                                            placeholder="Имя водителя">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                        <input type="text" class="form-control form-control-user" id="iin"
+                                               name="iin"
+                                               value="{{ subs.iin }}"
+                                               required
+                                            placeholder="ИИН">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <input type="text" class="form-control form-control-user" id="license_plate"
+                                               name="license_plate"
+                                               value="{{ subs.license_plate }}"
+                                               required
+                                            placeholder="Госномер">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                    <input type="text" class="form-control form-control-user" id="phone"
+                                           name="phone"
+                                           value="{{ subs.phone }}"
+                                           required
+                                        placeholder="Номер телефона">
+                                    </div>
+                                </div>
+                                <p style="color: red">{{ error }}</p>
+                                <div class="form-group row">
+                                    <div class="col-sm-6">
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            Оплатить
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr>
+                            </form>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+          {% include "footer_part.html" %}
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+
+</body>
+
+</html>

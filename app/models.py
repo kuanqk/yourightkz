@@ -2,6 +2,15 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    iin = models.CharField(max_length=12, default="")
+
+    def __str__(self):
+        return f"{self.user.last_name} {self.user.first_name}"
+
+
+
 class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
     type = models.CharField(max_length=100, default="personal")
@@ -11,6 +20,7 @@ class Subscription(models.Model):
     license_plate = models.CharField(max_length=16, blank=False, null=False)
     json_data = models.CharField(max_length=1000, default="{}")
     iin = models.CharField(max_length=12, default="")
+    phone = models.CharField(max_length=16, default="")
     last_name = models.CharField(max_length=100, default="")
     first_name = models.CharField(max_length=100, default="")
     active = models.BooleanField(default=False)

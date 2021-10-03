@@ -25,6 +25,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("register.html", view_registration.register),
     path("subscriptions.html", view_subscriptions.index),
+    path("subsriptions/add/", view_subscriptions.add),
     path("<filename>.html", views.html),
     path("", views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
