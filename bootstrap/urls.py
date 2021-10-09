@@ -23,6 +23,8 @@ import app.views_subscriptions as view_subscriptions
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("sms_again.html", view_registration.sms_again),
+    path("sms.html", view_registration.sms),
     path("register.html", view_registration.register),
     path("subscriptions.html", view_subscriptions.index),
     path("subsriptions/add/", view_subscriptions.add),

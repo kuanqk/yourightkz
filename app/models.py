@@ -48,6 +48,14 @@ class Subscription(models.Model):
         return f"{self.last_name} {self.first_name}, {self.iin}, {self.valid_from}, {active}, {paid}"
 
 
+class Process(models.Model):
+    subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
+    status = models.CharField(max_length=1000, default="Открыт")
+
+    def __str__(self):
+        return
+
+
 class Incident(models.Model):
     subscription = models.ForeignKey(
         Subscription, on_delete=models.CASCADE, null=False, blank=False
