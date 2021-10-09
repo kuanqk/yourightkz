@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import ObjectDoesNotExist
+from app.sms_gateway import send_sms
+from app.models import Profile
 
 
 def error(request, error_text):
@@ -14,6 +16,31 @@ def clean_phone_number(phone):
     # TODO: filter out by numbers only
 
     return phone
+
+
+def sms_again(request):
+    if request.user.is_anonymous:
+        return redirect("/login.html")
+    if request.user.profile.sms_ok:
+        return redirect("/subscriptions.html")
+    send_sms(request.user.username, f"Код регистрации на youright.kz: {request.user.profile.sms_code}")
+    return redirect("/sms.html")
+
+
+def sms(request):
+    if request.user.is_anonymous:
+        return redirect("/login.html")
+    if request.user.profile.sms_ok:
+        return redirect("/subscriptions.html")
+    context = dict()
+    if request.method == "POST":
+        if request.POST.get("sms_code", "") == request.user.profile.sms_code:
+            request.user.profile.sms_ok = True
+            request.user.profile.save()
+            return redirect("/subscriptions.html")
+        else:
+            context["error"] = "Код неверный"
+    return render(request, "register_sms.html", context=context)
 
 
 def register(request):
@@ -47,7 +74,16 @@ def register(request):
         user.set_password(password)
         user.save()
 
+        profile = Profile()
+        profile.user = user
+        profile.sms_code = "3939"
+        profile.save()
+
+        send_sms(profile.user.username, f"Код регистрации на youright.kz: {profile.sms_code}")
+
         login(request, user)
-        return redirect("/index.html")
+        return redirect("/sms.html")
+
+        # return redirect("/index.html")
 
     return render(request, "register.html", context=context)

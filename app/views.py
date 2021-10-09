@@ -15,6 +15,12 @@ def html(request, filename):
     context = {"filename": filename, "collapse": ""}
     if request.user.is_anonymous and filename not in ["login", "register"]:
         return redirect("/login.html")
+    try:
+        if not request.user.profile.sms_ok:
+            return redirect("/sms.html")
+    except:
+        pass
+
     if not request.user.is_anonymous:
         context["last_name"] = request.user.last_name
         context["first_name"] = request.user.first_name

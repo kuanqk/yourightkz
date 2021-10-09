@@ -9,6 +9,12 @@ def index(request):
     if request.user.is_anonymous:
         return redirect("/login.html")
 
+    try:
+        if not request.user.profile.sms_ok:
+            return redirect("/sms.html")
+    except:
+        pass
+
     context = {"subscriptions": Subscription.objects.filter(user=request.user).order_by("-id")}
 
     return render(request, "subscriptions.html", context=context)
