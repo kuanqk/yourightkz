@@ -9,6 +9,9 @@ class Property(models.Model):
     def __str__(self):
         return self.key
 
+    class Meta:
+        verbose_name_plural = "Properties"
+
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
