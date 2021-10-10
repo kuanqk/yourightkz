@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.db.models import ObjectDoesNotExist
 from app.sms_gateway import send_sms
 from app.models import Profile
+import random
 
 
 def error(request, error_text):
@@ -76,7 +77,7 @@ def register(request):
 
         profile = Profile()
         profile.user = user
-        profile.sms_code = "3939"
+        profile.sms_code = str(random.randint(1000, 9999))
         profile.save()
 
         send_sms(profile.user.username, f"Код регистрации на youright.kz: {profile.sms_code}")
