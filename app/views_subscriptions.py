@@ -49,3 +49,13 @@ def add(request):
         context = {"subs": subs}
 
         return render(request, "subscriptions_add.html", context=context)
+
+def pay(request, id):
+    if request.user.is_anonymous:
+        return redirect("/login.html")
+
+    subs = Subscription.objects.get(id=int(id))
+
+    context = {"subs": subs}
+
+    return render(request, "subscriptions_pay.html", context=context)
