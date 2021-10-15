@@ -10,13 +10,15 @@
 <body>
     <style>
         body {
-          background-image: url('../static/img/background.webp');
-          background-repeat: no-repeat;
+            background-image: url('../static/img/background.webp');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
     </style>
 
 
-    <nav class="navbar navbar-dark bg-secondary">
+    <nav class="navbar navbar-dark bg-transparent">
         <a href="https://youright.kz/">
         <img src="../static/img/logo.png" alt="logo"  style="width:40px;">
         </a>
@@ -65,19 +67,15 @@
                                                 <label class="custom-control-label" for="customCheck">запомнить меня</label>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-secondary btn-user btn-block">
+
+
+                                        <button type="submit" class="btn btn-outline-secondary btn-user btn-block">
                                             Вход
                                         </button>
-                                        <hr>
+                                        <a href="register.html" class="btn btn-outline-primary btn-user btn-block" aria-pressed="true">Зарегистрироваться!</a>
 
                                     </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Восстановить пароль?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" href="register.html">Зарегистрироваться!</a>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
