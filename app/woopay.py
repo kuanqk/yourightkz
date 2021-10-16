@@ -18,7 +18,7 @@ def login():
 def invoice(token, subs):
     amount = 2000
     try:
-        amount = int(Property.objects.get(key="price"))
+        amount = int(Property.objects.get(key="price").value)
     except Exception as e:
         pass
 

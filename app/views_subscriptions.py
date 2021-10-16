@@ -64,8 +64,12 @@ def pay(request, id):
 
     if request.method == "POST":
         try:
+            if subs.url_to_pay != "":
+                return redirect(subs.url_to_pay)
             token = login()
             url = invoice(token, subs)
+            subs.url_to_pay = url
+            subs.save()
             return redirect(url)
         except:
             ...

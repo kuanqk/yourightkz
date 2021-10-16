@@ -40,6 +40,7 @@ class Subscription(models.Model):
     active = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
     transaction_id = models.IntegerField(default=0)
+    url_to_pay = models.CharField(max_length=1000, default="", blank=True)
     # payment_status = models.CharField(max_length=100, default="Init")
 
     def is_valid(self):
