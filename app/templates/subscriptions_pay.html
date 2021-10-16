@@ -26,9 +26,10 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Новая подписка</h1>
 
-                        <div class="col-lg-6">
+                    <h1 class="h3 mb-4 text-gray-800" style="margin: 1em">Новая подписка</h1>
+
+                        <div class="col-lg-8">
                             <form method="post">
                             <div style="display: flex; flex-direction: column; margin: 1em">
 
@@ -41,40 +42,36 @@
                                             placeholder="Фамилия водителя">
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="firstname"
+                                        <label for="firstname" class="col-sm-2 col-form-label">Имя</label>
+                                        <input type="text" class="form-control form-control-user col-sm-8" id="firstname"
                                                name="firstname"
                                                value="{{ subs.first_name }}"
-                                               contenteditable="false"
+                                               readonly
                                             placeholder="Имя водителя">
-                                    </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        <input type="text" class="form-control form-control-user" id="iin"
+                                        <label for="iin" class="col-sm-2 col-form-label">ИИН</label>
+                                        <input type="text" class="form-control form-control-user col-sm-8" id="iin"
                                                name="iin"
                                                value="{{ subs.iin }}"
-                                               contenteditable="false"
+                                               readonly
                                             placeholder="ИИН">
-                                    </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
-                                        <input type="text" class="form-control form-control-user" id="license_plate"
+                                        <label for="license_plate" class="col-sm-2 col-form-label">Гос. Номер</label>
+                                        <input type="text" class="form-control form-control-user col-sm-8" id="license_plate"
                                                name="license_plate"
                                                value="{{ subs.license_plate }}"
-                                               contenteditable="false"
+                                               readonly
                                             placeholder="Госномер">
-                                    </div>
                                 </div>
                                 <div class="form-group row">
-                                    <div class="col-sm-6">
-                                    <input type="text" class="form-control form-control-user" id="phone"
+                                    <label for="phone" class="col-sm-2 col-form-label">Тел.</label>
+                                    <input type="text" class="form-control form-control-user col-sm-8" id="phone"
                                            name="phone"
                                            value="{{ subs.phone }}"
-                                               contenteditable="false"
+                                           readonly
                                         placeholder="Номер телефона">
-                                    </div>
                                 </div>
 
                                 <div class="form-group row">
@@ -84,8 +81,10 @@
                                                readonly>
                                 </div>
 
-                                <p>Вы покупаете подписку: которая длыво длвы олдыво лдо выдловы двыдлыввы</p>
-                                <p>Покупая подписку, вы соглашаетесь на условия, описанные в данном документе: <a>Соглашение</a></p>
+                                <p>Вы покупаете подписку: которая ...</p>
+                                <p>Покупая подписку, вы соглашаетесь на условия, описанные в данном документе:
+                                    <a href="../static/docs/dogovor.pdf" target="_blank">Соглашение</a>
+                                </p>
 
 
                                 <button type="submit" style="max-width: 20em" class="btn btn-success">Перейти к оплате</button>
