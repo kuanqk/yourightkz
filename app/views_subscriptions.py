@@ -3,6 +3,7 @@ import random
 
 from django.shortcuts import render, redirect, HttpResponse
 from app.models import Subscription, Profile
+from app.woopay import login, invoice
 
 
 def index(request):
@@ -62,7 +63,12 @@ def pay(request, id):
         return redirect("/404.html")
 
     if request.method == "POST":
-        print("Tried to really pay :)")
+        try:
+            token = login()
+            url = invoice(token, subs)
+            return redirect(url)
+        except:
+            ...
 
     context = {"subs": subs}
     if not subs.paid:
