@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -37,7 +39,14 @@ class Subscription(models.Model):
     first_name = models.CharField(max_length=100, default="")
     active = models.BooleanField(default=False)
     paid = models.BooleanField(default=False)
+    transaction_id = models.IntegerField(default=0)
     # payment_status = models.CharField(max_length=100, default="Init")
+
+    def is_valid(self):
+        if self.valid_from is None or self.valid_to is None:
+            return False
+        today = datetime.datetime.today().date()
+        return self.valid_from <= today <= self.valid_to
 
     def __str__(self):
         active = "НЕАКТИВНАЯ"

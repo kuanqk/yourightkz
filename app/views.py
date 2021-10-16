@@ -8,7 +8,7 @@ from app.views_registration import clean_phone_number
 def index(request):
     if request.user.is_anonymous:
         return redirect("/login.html")
-    return html(request, "index")
+    return redirect("/subscriptions.html")
 
 
 def html(request, filename):

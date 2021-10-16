@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  {% include "head_part.html" %}
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        {% include "sidebar_part.html" %}
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column" >
+
+            <!-- Main Content -->
+            <div id="content">
+
+            {% include "topbar_part.html" %}
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+
+                    <h1 class="h3 mb-4 text-success" style="margin: 1em">Спасибо за подписку!</h1>
+                    <h2 class="h3 mb-4 text-gray-800" style="margin: 1em">Оплата прошла успешно</h2>
+
+
+        <div class="well col-xs-12 col-sm-12 col-md-8 col-xs-offset-1 col-sm-offset-1 col-md-offset-3">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <address>
+                        <strong>ТОО "Юррайт"</strong>
+                        <br>
+                        Шагабутдинова д. 92 оф. 2
+                        <br>
+                        г. Алматы
+                        <br>
+                        Тел: +7(700)7998999
+                    </address>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                    <p>
+                        <em>Дата: {{ today|date:"d.m.Y" }}</em>
+                    </p>
+                    <p>
+                        <em>Счёт #: {{ subs.transaction_id }}</em>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h2>Чек</h2>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Услуга</th>
+                            <th>Кол-во</th>
+                            <th class="text-center">Цена</th>
+                            <th class="text-center">Итого</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="col-md-6"><em>Юридическое страхование</em></td>
+                            <td class="col-md-2" style="text-align: center"> 1 год </td>
+                            <td class="col-md-2 text-center">2000 тг</td>
+                            <td class="col-md-2 text-center">2000 тг</td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td class="text-right"><strong>Итого: </strong></td>
+                            <td class="text-center text-danger"><strong>2000 тг</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="text-center">
+                    <h2>Общая информация</h2>
+                </div>
+            </div>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr>
+                            <td class="col-md-6"><em>Фамилия водителя</em></td>
+                            <td class="col-md-4" >{{ subs.last_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><em>Имя водителя</em></td>
+                            <td class="col-md-4">{{ subs.first_name }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><em>ИИН водителя</em></td>
+                            <td class="col-md-4">{{ subs.iin }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><em>Гос номер</em></td>
+                            <td class="col-md-4">{{ subs.license_plate }}</td>
+                        </tr>
+                        <tr>
+                            <td class="col-md-6"><em>Телефон</em></td>
+                            <td class="col-md-4">{{ subs.phone }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+
+
+
+                                <a href="/" style="max-width: 20em" class="btn btn-success">Перейти к подпискам</a>
+
+                            </div>
+
+
+                        </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+
+
+
+
+            </div>
+            <!-- End of Main Content -->
+
+          {% include "footer_part.html" %}
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    {% include "modals_and_scripts_part.html" %}
+
+
+</body>
+
+</html>

@@ -31,6 +31,7 @@
 
                         <div class="col-lg-8">
                             <form method="post">
+                                {% csrf_token %}
                             <div style="display: flex; flex-direction: column; margin: 1em">
 
                                 <div class="form-group row">
@@ -83,7 +84,7 @@
 
                                 <p>Вы покупаете подписку: которая ...</p>
                                 <p>Покупая подписку, вы соглашаетесь на условия, описанные в данном документе:
-                                    <a href="../static/docs/dogovor.pdf" target="_blank">Соглашение</a>
+                                    <a href="/static/docs/dogovor.pdf" target="_blank">Соглашение</a>
                                 </p>
 
 

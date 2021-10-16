@@ -58,9 +58,9 @@
                                             <td>{{ subs.id }}</td>
                                             <td>{{ subs.license_plate }}</td>
                                             <td>{{ subs.iin }}<br>{{ subs.last_name }} {{ subs.first_name }}</td>
-                                            <td>{{ subs.valid_from }} Формат!</td>
-                                            <td>{{ subs.valid_to }}</td>
-                                            {% if subs.active %}
+                                            <td>{{ subs.valid_from|date:"d.m.Y"}}</td>
+                                            <td>{{ subs.valid_to|date:"d.m.Y"}}</td>
+                                            {% if subs.is_valid %}
                                                 <td>Активна</td>
                                             {% else %}
                                                 <td>Неактивна</td>

@@ -22,13 +22,14 @@ import app.views_registration as view_registration
 import app.views_subscriptions as view_subscriptions
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    path("admin5918/", admin.site.urls),
     path("sms_again.html", view_registration.sms_again),
     path("sms.html", view_registration.sms),
     path("register.html", view_registration.register),
     path("subscriptions.html", view_subscriptions.index),
     path("subscriptions/add/", view_subscriptions.add),
-    path("subscriptions/<id>/pay/", view_subscriptions.pay),
+    path("subscriptions/<int:id>/pay/", view_subscriptions.pay),
+    path("subscriptions/<int:id>/apply_payment/<int:transaction_id>", view_subscriptions.apply_payment),
     path("<filename>.html", views.html),
     path("", views.index),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
