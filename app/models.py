@@ -51,7 +51,7 @@ class Subscription(models.Model):
 
     def __str__(self):
         active = "НЕАКТИВНАЯ"
-        if self.active:
+        if self.is_valid():
             active = "АКТИВНАЯ"
 
         paid = "НЕ ОПЛАЧЕНО"
