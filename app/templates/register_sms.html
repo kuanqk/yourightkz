@@ -10,10 +10,20 @@
 <body>
     <style>
         body {
-          background-image: url('../static/img/background.webp');
-          background-repeat: no-repeat;
+            background-color: #303030;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
         }
     </style>
+
+
+    <nav class="navbar navbar-dark" style="background-color: rgba(48,48,48,0.95); height:80px; box-shadow: 0px 1px 3px rgba(0,0,0,0.40);">
+        <a href="https://youright.kz/">
+        <img src="../static/img/logo.png" alt="logo"  style="width:40px;">
+        </a>
+        <a class="navbar-brand" href="https://youright.kz/">ЮРРАЙТ</a>
+    </nav>
 
 
     <div class="container" style="width: 480px;">
@@ -35,8 +45,41 @@
                                                name="sms_code"
                                             placeholder="Код подтверждения">
                                     </div>
+
+                                <div class="col-sm-6" style="font-size:20px; text-align: left; vertical-align: text-bottom;">
+                                        <span id="timer"></span>
+                                    </div>
                                 </div>
                                 <p style="color: red">{{ error }}</p>
+
+
+                                <script>
+                                    document.getElementById('timer').innerHTML = 05 + ":" + 00;
+                                    startTimer();
+
+                                    function startTimer() {
+                                      var presentTime = document.getElementById('timer').innerHTML;
+                                      var timeArray = presentTime.split(/[:]+/);
+                                      var m = timeArray[0];
+                                      var s = checkSecond((timeArray[1] - 1));
+                                      if(s==59){m=m-1}
+                                      if(m<0){
+                                        return
+                                      }
+
+                                      document.getElementById('timer').innerHTML =
+                                        m + ":" + s;
+                                      console.log(m)
+                                      setTimeout(startTimer, 1000);
+                                    }
+
+                                    function checkSecond(sec) {
+                                      if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
+                                      if (sec < 0) {sec = "59"};
+                                      return sec;
+                                    }
+                                    </script>
+
                                 <button type="submit" class="btn btn-primary btn-user btn-block">
                                     Подтвердить
                                 </button>

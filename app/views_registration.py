@@ -53,14 +53,14 @@ def register(request):
         last_name = request.POST.get("lastname", "")
         password = request.POST.get("password", "")
         repeat_password = request.POST.get("repeat_password", "")
-        if len(phone) < 10:
+        if len(phone) < 10 and phone.replace('+','',1).isnumeric():
             return error(request, "Пожалуйста, введите номер телефона")
-        if len(first_name) < 2:
+        if len(first_name) and first_name.isalpha():
             return error(request, "Пожалуйста, введите имя")
-        if len(last_name) < 2:
+        if len(last_name) < 2 and last_name.isalpha():
             return error(request, "Пожалуйста, введите фамилию")
-        if len(password) < 8:
-            return error(request, "Пожалуйста, введите пароль, минимум 8 символов")
+        if len(password) < 6:
+            return error(request, "Пожалуйста, введите пароль, минимум 6 символов")
         if password != repeat_password:
             return error(request, "Пароли не совпадают")
         if User.objects.filter(id=phone).exists():
