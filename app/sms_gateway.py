@@ -9,7 +9,7 @@ class SmsThread(Thread):
         self.text = text
         Thread.__init__(self)
 
-    def run (self):
+    def run(self):
         phone = self.phone.replace(" ", "")
         ok = False
         if phone[:2] == "+7":
@@ -25,8 +25,8 @@ class SmsThread(Thread):
             mobizon_key = Property.objects.get(key="mobizon_key")
             r = requests.get(f"https://{mobizon_api.value}/service/Message/SendSmsMessage?"
                              f"output=json&apiKey={mobizon_key.value}&"
+                             f"from=YouRight&"
                              f"recipient={phone}&text={self.text}")
-
             return r.content.decode("utf-8")
 
 

@@ -10,9 +10,10 @@ from app.woopay import login, invoice
 class TestEverything(TestCase):
     def a_test_sms(self):
         content = send_sms("+77789711555", "test sms")
+        print(content)
         self.assertTrue('"code":0' in content)
 
-    def test_login_to_wooppay(self):
+    def a_test_login_to_wooppay(self):
         user = User()
         user.email = "test@gmail.com"
         user.username = "testuser"
