@@ -55,9 +55,9 @@ def register(request):
         repeat_password = request.POST.get("repeat_password", "")
         if len(phone) < 10 and phone.replace('+','',1).isnumeric():
             return error(request, "Пожалуйста, введите номер телефона")
-        if len(first_name) and first_name.isalpha():
+        if len(first_name)< 2:
             return error(request, "Пожалуйста, введите имя")
-        if len(last_name) < 2 and last_name.isalpha():
+        if len(last_name) < 2:
             return error(request, "Пожалуйста, введите фамилию")
         if len(password) < 6:
             return error(request, "Пожалуйста, введите пароль, минимум 6 символов")
