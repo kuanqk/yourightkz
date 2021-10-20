@@ -13,7 +13,7 @@ def index(request):
 
 def html(request, filename):
     context = {"filename": filename, "collapse": ""}
-    if request.user.is_anonymous and filename not in ["login", "register"]:
+    if request.user.is_anonymous and filename not in ["login", "register","forgot-password"]:
         return redirect("/login.html")
 
 
@@ -38,9 +38,9 @@ def html(request, filename):
                 login(request, user)
                 return redirect("/")
             else:
-                context["error"] = "Wrong password"
+                context["error"] = "Неверный пароль"
         except ObjectDoesNotExist:
-            context["error"] = "User not found"
+            context["error"] = "Пользователь не найден"
 
         print("login")
         print(username, password)

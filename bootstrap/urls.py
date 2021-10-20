@@ -26,6 +26,7 @@ urlpatterns = [
     path("sms_again.html", view_registration.sms_again),
     path("sms.html", view_registration.sms),
     path("register.html", view_registration.register),
+    path("forgot-password.html", view_registration.forgot),
     path("subscriptions.html", view_subscriptions.index),
     path("subscriptions/add/", view_subscriptions.add),
     path("subscriptions/<int:id>/pay/", view_subscriptions.pay),

@@ -88,3 +88,27 @@ def register(request):
         # return redirect("/index.html")
 
     return render(request, "register.html", context=context)
+
+def forgot(request):
+    context = {"error": ""}
+    print("request method", request.method)
+    if request.method == "POST":
+        phone = clean_phone_number(request.POST.get("phone", ""))
+        if len(phone) < 10 and phone.isnumeric():
+            context["error"] = "Пожалуйста, введите номер телефона"
+
+        try:
+            user = User.objects.get(username=phone)
+            newpassword = str(random.randint(100000,999999))
+            user.set_password(newpassword)
+            user.save()
+
+            send_sms(user.username, f"Ваш новый пароль на youright.kz: {newpassword}")
+
+            return redirect("/login.html")
+        except:
+            context["error"] = "Пользователь не найден"
+
+        # return redirect("/index.html")
+
+    return render(request, "forgot-password.html", context=context)
