@@ -13,7 +13,7 @@ def error(request, error_text):
 
 
 def clean_phone_number(phone):
-    phone = phone.replace(" ", "").replace("+7", "8")
+    phone = phone.replace(" ", "").replace("+7", "8").replace('-','')
     # TODO: filter out by numbers only
 
     return phone
@@ -53,7 +53,7 @@ def register(request):
         last_name = request.POST.get("lastname", "")
         password = request.POST.get("password", "")
         repeat_password = request.POST.get("repeat_password", "")
-        if len(phone) < 10 and phone.replace('+','',1).isnumeric():
+        if len(phone) < 10 and phone.isnumeric():
             return error(request, "Пожалуйста, введите номер телефона")
         if len(first_name)< 2:
             return error(request, "Пожалуйста, введите имя")
@@ -63,7 +63,7 @@ def register(request):
             return error(request, "Пожалуйста, введите пароль, минимум 6 символов")
         if password != repeat_password:
             return error(request, "Пароли не совпадают")
-        if User.objects.filter(id=phone).exists():
+        if User.objects.filter(username=phone).exists():
             return error(
                 request, "Пользователь с таким номером телефона уже существует"
             )
