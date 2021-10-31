@@ -13,9 +13,7 @@ def error(request, error_text):
 
 
 def clean_phone_number(phone):
-    phone = phone.replace(" ", "").replace("+7", "8").replace('-','')
-    # TODO: filter out by numbers only
-
+    phone = phone.replace(" ", "").replace("+7", "8").replace('-', '').replace('(', '').replace(')', '')
     return phone
 
 

@@ -12,7 +12,8 @@ class Property(models.Model):
         return self.key
 
     class Meta:
-        verbose_name_plural = "Properties"
+        verbose_name_plural = "Настройки"
+        verbose_name = "Настройка"
 
 
 class Profile(models.Model):
@@ -24,16 +25,19 @@ class Profile(models.Model):
     def __str__(self):
         return f"{self.user.last_name} {self.user.first_name}"
 
+    class Meta:
+        verbose_name = "Профиль"
+        verbose_name_plural = "Профили"
 
 class Subscription(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
     type = models.CharField(max_length=100, default="personal")
     tarif = models.CharField(max_length=100, default="personal")
-    valid_from = models.DateField(null=True, blank=True)
-    valid_to = models.DateField(null=True, blank=True)
+    valid_from = models.DateField(null=True, blank=True, verbose_name="Действительно ОТ")
+    valid_to = models.DateField(null=True, blank=True, verbose_name="Действительно ДО")
     license_plate = models.CharField(max_length=16, blank=False, null=False)
     json_data = models.CharField(max_length=1000, default="{}")
-    iin = models.CharField(max_length=12, default="")
+    iin = models.CharField(max_length=12, default="", verbose_name="ИИН")
     phone = models.CharField(max_length=16, default="")
     last_name = models.CharField(max_length=100, default="")
     first_name = models.CharField(max_length=100, default="")
@@ -60,6 +64,9 @@ class Subscription(models.Model):
 
         return f"{self.last_name} {self.first_name}, {self.iin}, {self.valid_from}, {active}, {paid}"
 
+    class Meta:
+        verbose_name = "Подписка"
+        verbose_name_plural = "Подписки"
 
 class Process(models.Model):
     subscription = models.ForeignKey(Subscription, on_delete=models.CASCADE)
@@ -80,3 +87,7 @@ class Incident(models.Model):
 
     def __str__(self):
         return f"{self.subscription.iin}: {self.description}"
+
+    class Meta:
+        verbose_name = "Процесс"
+        verbose_name_plural = "Процессы"
